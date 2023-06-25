@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
@@ -6,6 +6,8 @@ function Details(){
      const {id}=useParams()
      const {books}=useSelector(state=>state)
      const [bookdata,setBookData]=useState({})
+     const toast=useToast()
+
 
      useEffect(()=>{
          const filteredBook=books.filter(item=>item.id==id)
@@ -25,6 +27,14 @@ function Details(){
           localStorage.setItem("cart", JSON.stringify(cartData));
     
           console.log("Book added to cart:", bookdata);
+          toast({
+            position: "top",
+            title: "Book is added in cart",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+            bg:"green"
+          });
         } else {
           console.log("Book is already in the cart:", bookdata);
         }

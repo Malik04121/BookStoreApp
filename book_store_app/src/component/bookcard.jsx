@@ -18,7 +18,11 @@ function BookCard(){
         <>
          <SimpleGrid w="80%" bg="rgb(44, 44, 44)"  columns={[2, 2, 4]} columnGap="5%" rowGap="1%" p="2%">
             {books.map((ele)=>(
-                <Box bg="red" h="450px" display="flex" flexDirection="column" color="white" key={ele.id}>
+                <Box  h="450px" display="flex" flexDirection="column" color="white" _hover={{
+                    backgroundColor: "#252525",
+                    transition: "500ms linear",
+                    transform: "scale(1.1)",
+                  }} key={ele.id} >
                     <Box  h="60%" position="relative" overflow="hidden">
                     <Image src={ele.volumeInfo.imageLinks?.thumbnail}  w="100%" h="100%" />
                     </Box>
@@ -32,9 +36,9 @@ function BookCard(){
                         <Text as="b">Price:</Text>
                         <Text>₹{ele.volumeInfo.pageCount}</Text>
                     </Flex>
-                    <Box mt="auto">
+                    <Box mt="auto"  alignSelf="center">
                     <Link to={`/details/${ele.id}`}>
-                       <Button>View More</Button>
+                       <Button m="auto">View More</Button>
                        </Link>
                     </Box>
                     </Box>
