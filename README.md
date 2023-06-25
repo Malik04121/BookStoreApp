@@ -23,5 +23,4 @@
 
 <li><b >checkout page</b></li>
 &nbsp
-<img src="https://github.com/Malik04121/BookStoreApp/assets/105594908/a67c66b7-d065-456f-9789-10c74447dc88
-"/>
+<img src="https://github.com/Malik04121/BookStoreApp/assets/105594908/a67c66b7-d065-456f-9789-10c74447dc88"/>
