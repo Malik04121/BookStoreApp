@@ -26,7 +26,7 @@ function Navbar(){
     return(
         <>
           <Flex position="sticky" top="0px" bg="black" color="white" h="80px" alignItems="center" justifyContent="space-around" zIndex="1000">
-                <Link to="/cart">
+                <Link to="/">
                     <Text fontSize="2xl">Book Store</Text>
                     </Link>
             <Flex alignItems="center" color="white" w="30%">
