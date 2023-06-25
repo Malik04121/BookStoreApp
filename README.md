@@ -8,6 +8,7 @@
 - Run the following commands inside,
   - `npm install`
   - `npm start`
+```
 ## Glimps of Project
 <ul>
 <li><b >Homepage</b></li>
