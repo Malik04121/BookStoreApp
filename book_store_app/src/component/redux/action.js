@@ -34,6 +34,9 @@ export const fetchBooks = (query) => {
     if(query.length!==0){
        category=typeof(query) === "object"?`subject:${query.join("+")}`:query
     }
+    else{
+      category="Biography & Autobiography"
+    }
     
      
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${category}&key=AIzaSyAQmHR7JZVqmd-uNoOCi2cBrtVz4dm93ds&maxResults=40`)
