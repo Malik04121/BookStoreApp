@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react"
-import { useEffect } from "react"
+import { Box, Button, Flex, Heading, Image, SimpleGrid, Spinner, Text } from "@chakra-ui/react"
+import { useEffect, useState } from "react"
 import { fetchBooks } from "./redux/action"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
@@ -7,22 +7,32 @@ import { Link } from "react-router-dom"
 
 
 function BookCard(){
+    const [bookdata,setBookdata]=useState([])
     const  dispatch=useDispatch()
-    const {books}=useSelector(state=>state)
+    const {books,loading}=useSelector(state=>state)
     
     useEffect(()=>{
          dispatch(fetchBooks("Biography & Autobiography"))
     },[])
+    useEffect(()=>{
+        setBookdata(books)
+    },[books])
 
     return (
         <>
-         <SimpleGrid w="80%" bg="rgb(44, 44, 44)"  columns={[2, 2, 4]} columnGap="5%" rowGap="1%" p="2%">
-            {books.map((ele)=>(
+        {loading ? (
+        <Flex justifyContent="center" alignItems="center" height="100vh" ml="30%">
+          <Spinner size="xl" color="green.500" as="b"/>
+        </Flex>
+      ) : (
+        
+         <SimpleGrid w="80%" bg="rgb(44, 44, 44)"   columns={[2, 2, 4]} columnGap="5%" rowGap="1%" p="2%" pb="500px">
+            {bookdata.map((ele)=>(
                 <Box  h="450px" display="flex" flexDirection="column" color="white" _hover={{
                     backgroundColor: "#252525",
                     transition: "500ms linear",
                     transform: "scale(1.1)",
-                  }} key={ele.id} >
+                  }} >
                     <Box  h="60%" position="relative" overflow="hidden">
                     <Image src={ele.volumeInfo.imageLinks?.thumbnail}  w="100%" h="100%" />
                     </Box>
@@ -45,8 +55,11 @@ function BookCard(){
                     
                 </Box>
             ))}
+                
 
          </SimpleGrid>
+      )
+         }
         </>
     )
 }

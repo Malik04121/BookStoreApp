@@ -29,7 +29,14 @@ export const fetchBooksFailure = (error) => {
 export const fetchBooks = (query) => {
   return (dispatch) => {
     dispatch(fetchBooksRequest());
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyAQmHR7JZVqmd-uNoOCi2cBrtVz4dm93ds&maxResults=40`)
+    console.log(query,query.length,"query is this",typeof(query))
+    let category = query
+    if(query.length!==0){
+       category=typeof(query) === "object"?`subject:${query.join("+")}`:query
+    }
+    
+     
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${category}&key=AIzaSyAQmHR7JZVqmd-uNoOCi2cBrtVz4dm93ds&maxResults=40`)
       .then(response => {
         const books = response.data.items
         console.log(books)

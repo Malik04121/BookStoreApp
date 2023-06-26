@@ -3,17 +3,15 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
-let cartData=JSON.parse(localStorage.getItem("cart"))||[]
 function Cart(){
     const [total,setTotal]=useState(0)
     const [data,setData]=useState([])
     const toast=useToast()
-    console.log(cartData)
+    let cartData=JSON.parse(localStorage.getItem("cart"))||[]
+
 
     const removeItemHandler=(ele)=>{
-        console.log(ele,"mnbv")
         const updatedCartData = cartData.filter((item) => ele.id !== item.id);
-        console.log(updatedCartData,"ksgkjsr")
         localStorage.setItem("cart", JSON.stringify(updatedCartData));
         setData(updatedCartData);
       
